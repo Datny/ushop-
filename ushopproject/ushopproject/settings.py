@@ -25,12 +25,13 @@ SECRET_KEY = 'u=7_g^hoy2e8zz-qff$ao#5-(3wm)+e^ay!3d#3p=6pb-$*7aw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'mysite',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'ushopproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,10 +76,15 @@ WSGI_APPLICATION = 'ushopproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ushop',
+        'USER': 'ushopdb',
+        'PASSWORD':'ushopdb',
+        'HOST': '127.0.0.1',
+        'POST': '5432'
     }
 }
+
 
 
 # Password validation
