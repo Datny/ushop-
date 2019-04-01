@@ -32,6 +32,7 @@
         }
       }
 
+
     </style>
 
 
@@ -40,19 +41,29 @@
 <header>
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex navbar-expand-lg navbar-light bg-light  ">
-            <div class="container">
+            <div class="container ">
                 <a class="nav-brand" href="#">
                     <img src="{%static 'icon.png'  %}" class="d-inline-block-align-top"/>
-                    </a>
+                </a>
+                <div class="float-right">
+                    <ul class="navbar-nav ml-auto ">
 
-                <ul class="navbar-nav ml-auto ">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{%url 'signup'%}">Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{%url 'login'%}">Log-In</a>
-                    </li>
-                </ul>
+
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}" onclick="">Log-out</a>
+                            <form method="post" id="logout" action="{%url 'logout'%}"> {% csrf_token %}<input type="hidden"/></form>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'login'%}">Log-In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'signup'%}">Sign Up</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
