@@ -10,6 +10,8 @@ def signup(request):
             if request.POST["password1"] == request.POST["password2"]:
                 user = User.objects.get(username=request.POST["login"])
                 return render(request, "accounts/signup.html", {"error": "Username have already been taken"})
+            else:
+                return render(request, "accounts/signup.html", {"error2": "Passwords don't match"})
         except User.DoesNotExist:
             user = User.objects.create_user(username=request.POST["login"], password=request.POST["password1"])
             auth.login(request, user)
