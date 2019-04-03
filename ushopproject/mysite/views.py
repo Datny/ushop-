@@ -39,7 +39,7 @@ def create(request):
             product.pub_date = timezone.datetime.now()
             product.hunter = request.user
             product.save()
-            return redirect('products/'+str(product.id))
+            return redirect("/products/"+str(product.id))
         else:
             return render(request, 'mysite/create.html', {"error": "All fields are required"})
     else:
