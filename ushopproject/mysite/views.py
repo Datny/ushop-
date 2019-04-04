@@ -39,8 +39,16 @@ def create(request):
             product.pub_date = timezone.datetime.now()
             product.hunter = request.user
             product.save()
-            return redirect("/products/"+str(product.id))
+            return redirect("/products/"+str(product.id)+"/detail")
         else:
             return render(request, 'mysite/create.html', {"error": "All fields are required"})
     else:
         return render(request, 'mysite/create.html')
+
+@login_required()
+def upvote(request, product_id):
+    if request.method=="POST":
+        product = get_object_or_404(Product, pk=product_id)
+        product.votes_total += +1
+        product.save()
+        return redirect("/products/"+str(product.id)+"/detail")
