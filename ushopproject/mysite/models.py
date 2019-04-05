@@ -20,3 +20,7 @@ class Product(models.Model):
 
     def pubdatepretty(self):
         return self.pub_date.strftime("%Y-%m-%d")
+
+    def summary(self):
+        return self.body[:100]
+
